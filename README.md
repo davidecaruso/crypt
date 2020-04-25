@@ -2,13 +2,11 @@
     <img src="https://github.com/davidecaruso/crypt/raw/master/logo.png" alt="Crypt" title="Crypt" />
 </p>
 
-> **PHP** library to securely **encrypt/decrypt** strings.
-
-Encrypt a string generating every time a random one which ever can be decrypted returning the original using a secret string.
+> **Encrypt** a string generating every time a random one that can always be **decrypted** by returning the original using a **secret** string.
 
 ## Install
 ```shell script
-composer required davidecaruso/crypt
+composer require davidecaruso/crypt
 ```
 
 ## Simple usage
@@ -50,3 +48,9 @@ Output:
 ```text
 d84a5a3882dce7377185be55446a1ef73b128c63a014b754e46b702984f9a287
 ```
+
+## Author
+[Davide Caruso](https://about.me/davidecaruso)
+
+## License
+Licensed under [MIT](LICENSE).
