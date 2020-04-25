@@ -2,6 +2,12 @@
     <img src="https://github.com/davidecaruso/crypt/raw/master/logo.png" alt="Crypt" title="Crypt" />
 </p>
 
+
+<p align="center">
+    <a href="https://packagist.org/packages/davidecaruso/crypt"><img src="https://poser.pugx.org/davidecaruso/crypt/v/stable.svg" alt="Latest Stable Version"></a>
+    <a href="https://packagist.org/packages/davidecaruso/crypt"><img src="https://poser.pugx.org/davidecaruso/crypt/license.svg" alt="License"></a>
+</p>
+
 > **Encrypt** a string generating every time a random one that can always be **decrypted** by returning the original using a **secret** key.
 
 ## Install
