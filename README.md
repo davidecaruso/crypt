@@ -27,9 +27,8 @@ c41da6c42e58ff58bfe7a2bf7271f89ace07f07b9c9ee71ced9efbd5d6539f966dab2f167bb22c46
 hey! don't let me be clear
 ```
 
-## Generate a random secret string 
+## Generate a random secret key 
 ### CLI
-Create a very very secret string through this command:
 ```shell script
 composer run-script secret
 ```
