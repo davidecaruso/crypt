@@ -1,0 +1,42 @@
+{
+    "name": "davidecaruso/crypt",
+    "description": "PHP library to securely encrypt/decrypt strings.",
+    "keywords": ["encrypt", "decrypt", "php", "hash"],
+    "homepage": "https://github.com/davidecaruso/crypt",
+    "type": "library",
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davide Caruso",
+            "email": "davide.caruso93@gmail.com",
+            "homepage": "https://about.me/davidecaruso"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Crypt\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Crypt\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "secret": "php scripts/secret.php",
+        "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
+        "phpunit": "phpunit --verbose --colors=always",
+        "coverage": "phpunit --verbose --colors=always --coverage-html build/coverage",
+        "test": [
+            "@phpcs",
+            "@phpunit"
+        ]
+    },
+    "minimum-stability": "stable"
+}
