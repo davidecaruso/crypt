@@ -38,10 +38,12 @@
         "decrypt:non-idempotent": "php scripts/decrypt.php non-idempotent",
         "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
         "phpunit": "phpunit --verbose --colors=always",
-        "coverage": "phpunit --verbose --colors=always --coverage-html build/coverage",
+        "coverage:html": "phpunit --verbose --colors=always --coverage-html build/coverage",
+        "coverage:clover": "phpunit --verbose --colors=always --coverage-clover coverage.xml",
         "test": [
             "@phpcs",
-            "@phpunit"
+            "@phpunit",
+            "@coverage:clover"
         ]
     },
     "minimum-stability": "stable"

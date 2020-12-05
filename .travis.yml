@@ -1,0 +1,13 @@
+language: php
+php:
+    - 7.3
+cache:
+    directories:
+        - $HOME/.composer/cache
+install: composer install
+script:
+    - php -v
+    - composer -V
+    - composer run-script test
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
