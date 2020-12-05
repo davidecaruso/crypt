@@ -4,8 +4,8 @@
 
 
 <p align="center">
-    <a href="https://codecov.io/gh/davidecaruso/crypt"><img src="https://codecov.io/gh/davidecaruso/crypt/branch/develop/graph/badge.svg?token=2B9K0OS5SJ"/></a>
-    <a href="https://travis-ci.org/davidecaruso/crypt"><img src="https://travis-ci.org/davidecaruso/shell.js.svg?branch=master"/></a> 
+    <a href="https://codecov.io/gh/davidecaruso/crypt"><img src="https://codecov.io/gh/davidecaruso/crypt/branch/master/graph/badge.svg?token=2B9K0OS5SJ"/></a>
+    <a href="https://travis-ci.org/davidecaruso/crypt"><img src="https://travis-ci.org/davidecaruso/crypt.svg?branch=master"/></a> 
     <a href="https://packagist.org/packages/davidecaruso/crypt"><img src="https://poser.pugx.org/davidecaruso/crypt/v/stable.svg" alt="Latest Stable Version"></a>
     <a href="https://packagist.org/packages/davidecaruso/crypt"><img src="https://poser.pugx.org/davidecaruso/crypt/license.svg" alt="License"></a>
 </p>
