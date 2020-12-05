@@ -7,5 +7,5 @@ require_once __DIR__ . '/colors.php';
 print sprintf(
     "\n%s%s\n\n",
     $lightgreen,
-    \Crypt\Salt::generate()
+    hash('SHA256', (string) rand())
 );

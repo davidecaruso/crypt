@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Crypt;
 
+use Crypt\Methods\Method;
+
 /**
  * Class Crypt
  *
@@ -13,63 +15,41 @@ namespace Crypt;
 class Crypt
 {
     /**
-     * @var \Crypt\Salt
+     * @var \Crypt\Methods\Method
      */
-    protected $salt;
-    
+    protected $method;
     /**
      * @var string
      */
-    private const METHOD = 'AES-256-CTR';
+    protected $cipher;
     
     /**
      * Crypt constructor.
      *
-     * @param \Crypt\Salt $salt
+     * @param \Crypt\Methods\Method $method
      */
-    public function __construct(Salt $salt)
+    public function __construct(Method $method)
     {
-        $this->salt = $salt;
+        $this->method = $method;
     }
     
     /**
-     * @param string $message
+     * @param string $text
      *
      * @return string
      */
-    public function encrypt(string $message): string
+    public function encrypt(string $text): string
     {
-        $string = openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::METHOD));
-        $encrypted = openssl_encrypt(
-            $message,
-            self::METHOD,
-            $this->salt->digested(),
-            OPENSSL_RAW_DATA,
-            $string
-        );
-        
-        return bin2hex($string . $encrypted);
+        return $this->method->encrypt($text);
     }
     
     /**
-     * @param string $message
+     * @param string $text
      *
      * @return string
      */
-    public function decrypt(string $message): string
+    public function decrypt(string $text): string
     {
-        $message = hex2bin($message);
-        
-        $length = openssl_cipher_iv_length(self::METHOD);
-        $string = mb_substr($message, 0, $length, '8bit');
-        $data = mb_substr($message, $length, null, '8bit');
-        
-        return openssl_decrypt(
-            $data,
-            self::METHOD,
-            $this->salt->digested(),
-            OPENSSL_RAW_DATA,
-            $string
-        );
+        return $this->method->decrypt($text);
     }
 }
