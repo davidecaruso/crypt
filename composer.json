@@ -5,7 +5,9 @@
     "homepage": "https://github.com/davidecaruso/crypt",
     "type": "library",
     "require": {
-        "php": "^7.3"
+        "php": "^7.3",
+        "ext-openssl": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1"
@@ -30,6 +32,10 @@
     },
     "scripts": {
         "secret": "php scripts/secret.php",
+        "encrypt:idempotent": "php scripts/encrypt.php idempotent",
+        "decrypt:idempotent": "php scripts/decrypt.php idempotent",
+        "encrypt:non-idempotent": "php scripts/encrypt.php non-idempotent",
+        "decrypt:non-idempotent": "php scripts/decrypt.php non-idempotent",
         "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
         "phpunit": "phpunit --verbose --colors=always",
         "coverage": "phpunit --verbose --colors=always --coverage-html build/coverage",
