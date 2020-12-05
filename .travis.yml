@@ -4,7 +4,10 @@ php:
 cache:
     directories:
         - $HOME/.composer/cache
-install: composer install
+before_script:
+    - printf "\n" | pecl install yaml-beta
+    - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - composer install --dev
 script:
     - php -v
     - composer -V
