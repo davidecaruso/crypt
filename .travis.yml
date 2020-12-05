@@ -4,13 +4,10 @@ php:
 cache:
     directories:
         - $HOME/.composer/cache
-before_script:
-    - printf "\n" | pecl install yaml-beta
-    - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - composer install --dev
+install: composer install
 script:
     - php -v
     - composer -V
-    - composer run-script coverage:clover
+    - composer coverage:clover
 after_success:
     - bash <(curl -s https://codecov.io/bash)
