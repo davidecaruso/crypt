@@ -37,13 +37,12 @@
         "encrypt:non-idempotent": "php scripts/encrypt.php non-idempotent",
         "decrypt:non-idempotent": "php scripts/decrypt.php non-idempotent",
         "phpcs": "phpcs src tests --standard=psr2 -sp --colors",
-        "phpunit": "phpunit --verbose --colors=always",
-        "coverage:html": "phpunit --coverage-html build/coverage",
-        "coverage:clover": "phpunit --coverage-clover coverage.xml",
+        "phpunit": "vendor/bin/phpunit --verbose --colors=always",
+        "coverage:html": "@phpunit --coverage-html build/coverage",
+        "coverage:clover": "@phpunit --coverage-clover coverage.xml",
         "test": [
             "@phpcs",
-            "@phpunit",
-            "@coverage:clover"
+            "@phpunit"
         ]
     },
     "minimum-stability": "stable"
