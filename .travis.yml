@@ -8,6 +8,6 @@ install: composer install
 script:
     - php -v
     - composer -V
-    - composer run-script test
+    - composer run-script coverage:clover
 after_success:
     - bash <(curl -s https://codecov.io/bash)
