@@ -31,7 +31,7 @@
         }
     },
     "scripts": {
-        "secret": "php scripts/secret.php",
+        "secret:generate": "php scripts/secret.php",
         "encrypt:idempotent": "php scripts/encrypt.php idempotent",
         "decrypt:idempotent": "php scripts/decrypt.php idempotent",
         "encrypt:non-idempotent": "php scripts/encrypt.php non-idempotent",

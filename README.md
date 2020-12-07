@@ -10,50 +10,70 @@
     <a href="https://packagist.org/packages/davidecaruso/crypt"><img src="https://poser.pugx.org/davidecaruso/crypt/license.svg" alt="License"></a>
 </p>
 
-> **Encrypt** a string generating every time a random one that can always be **decrypted** by returning the original using a **secret** key.
+> Two-way encryption PHP library.
 
 ## Install
-```shell script
+```shell
 composer require davidecaruso/crypt
 ```
 
-## Simple usage
+## How to use
+### Idempotent way
+By this way, the encryption algorithm will always return the same output when encrypt the same text.
 ```php
 <?php
-$salt = new \Crypt\Salt('don\'t tell anyone');
-$crypt = new \Crypt\Crypt($salt);
+$passphrase = '1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c';
+$vector = 'f3bb46ceb0e30b88';
+$crypt = new Crypt(new Idempotent($passphrase, $vector));
 
-$encrypted = $crypt->encrypt('hey! don\'t let me be clear');
+$encrypted = $crypt->encrypt('foobar');
 $decrypted = $crypt->decrypt($encrypted);
 
 echo "{$encrypted}\n";
 echo "{$decrypted}\n";
-```
-Output:
-```text
-c41da6c42e58ff58bfe7a2bf7271f89ace07f07b9c9ee71ced9efbd5d6539f966dab2f167bb22c463b37
-hey! don't let me be clear
+
+// 472c66cde1310e7990ae9afaba8bf44a
+// foobar
 ```
 
-## Generate a random secret key 
-### CLI
-```shell script
-composer run-script secret
-```
-Output:
-```text
-266eeed875cf3b015a2c62d2c52f1ffe3febe2c8082f9804597ab68b1a10c40d
-```
-
-### Programmatically
+### Non-idempotent way
+By this way, the encryption algorithm will always return a new output when encrypt the same text.
 ```php
 <?php
-$salt = new \Crypt\Salt();
-echo $salt->secret();
+$passphrase = '1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c';
+$crypt = new Crypt(new NonIdempotent($passphrase));
+
+$encrypted = $crypt->encrypt('foobar');
+$decrypted = $crypt->decrypt($encrypted);
+
+echo "{$encrypted}\n";
+echo "{$decrypted}\n";
+
+// 29162d5b677312fa8b0039dfd72150e01510a1a1cd628671ea12da178672dcd7
+// foobar
 ```
-Output:
-```text
-d84a5a3882dce7377185be55446a1ef73b128c63a014b754e46b702984f9a287
+
+## CLI Commands
+### Generate a random 64 bytes secret string
+```shell
+composer secret:generate
+# 015556dd3e30230debd59fa2b7682fadc0795396e3ff1dfece0c6a6784eec834
+```
+
+### Encrypt/decrypt by idempotent way
+```shell
+composer encrypt:idempotent 1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c foobar f3bb46ceb0e30b88
+# 472c66cde1310e7990ae9afaba8bf44a
+composer decrypt:idempotent 1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c 472c66cde1310e7990ae9afaba8bf44a f3bb46ceb0e30b88
+# foobar
+```
+
+### Encrypt/decrypt by non-idempotent way
+```shell
+composer encrypt:non-idempotent 1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c foobar
+# 06de08dc3fe774e40d15c0f3111ec6c04f160fd18e98a04ae7ece060b168167e
+composer decrypt:non-idempotent 1765f3de9cb961bfed77a8ec222a3a4948bc269730fb8cd10ef3645b371f589c 06de08dc3fe774e40d15c0f3111ec6c04f160fd18e98a04ae7ece060b168167e
+# foobar
 ```
 
 ## Author
